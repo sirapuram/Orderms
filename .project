@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>msapigateway</name>
+=======
+	<name>ordermscircuitbreaker</name>
+>>>>>>> branch 'master' of https://github.com/sirapuram/Orderms.git
 	<comment></comment>
 	<projects>
 	</projects>

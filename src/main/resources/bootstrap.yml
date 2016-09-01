@@ -1,11 +1,19 @@
 ---
 spring:
   application:
+<<<<<<< HEAD
     name: gateway-microservice
+=======
+    name: order-circuitbreaker-mucroservice
+>>>>>>> branch 'master' of https://github.com/sirapuram/Orderms.git
   cloud:
     config:
       uri: http://localhost:8080
       
 server:
+<<<<<<< HEAD
   port: 8011    
+=======
+  port: 8010    
+>>>>>>> branch 'master' of https://github.com/sirapuram/Orderms.git
  
