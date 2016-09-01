@@ -1,5 +1,7 @@
 package com.example.model;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,43 +15,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.repository.ManufacturerRepository;
+import com.example.dao.OrderRepository;
+import com.example.service.OrderService;
 
 @RestController
-public class ManufacturerAPI {
+public class OrderAPI {
 	
 	@Autowired
-	private ManufacturerRepository manufacturerRepository;
+	private OrderService orderService;
 
- @RequestMapping(value="/api/manufacturer",method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
- public ResponseEntity<Manufacturer> add(@RequestBody Manufacturer manufacturer){
-	 manufacturerRepository.save(manufacturer);
-	 return new ResponseEntity<Manufacturer>(manufacturer,HttpStatus.CREATED);
- }
- 
- public ResponseEntity<List<Manufacturer>> findAll(){	 
-	 return new ResponseEntity<List<Manufacturer>>(manufacturerRepository.findAll(),HttpStatus.OK);
+ @RequestMapping(value="/api/order",method=RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
+ public ResponseEntity<List<Order>> findAll(){
 	 
+	 List<Order> list = new ArrayList<Order>();
+	 list.add(new Order(1,"Local Order", new Date(),true));
+	 
+	 return new ResponseEntity<List<Order>>(orderService.findAll(),HttpStatus.OK);
  }
  
- @RequestMapping(value="/api/manufacturer",method=RequestMethod.GET)
- public ResponseEntity<List<Manufacturer>> findAll(Manufacturer manufacturer){
-	// manufacturerRepository.save(manufacturer);
-	 return new ResponseEntity<List<Manufacturer>>(manufacturerRepository.findAll(),HttpStatus.OK);
- }
  
- @RequestMapping(value="/api/manufacture/{id}",method=RequestMethod.PUT,consumes=MediaType.APPLICATION_JSON_VALUE)
- public ResponseEntity<Manufacturer> update(@RequestBody Manufacturer manufacturer,@PathVariable("id")Integer id){
-	 Manufacturer manufacturerOne = manufacturerRepository.findOne(id);
-	 if(manufacturerOne != null)
-	 {
-		 manufacturerOne.setActive(manufacturer.getActive());
-		 manufacturerOne.setFoundedDate(manufacturer.getFoundedDate());
-		 manufacturerOne.setName(manufacturer.getName());
-		 manufacturerRepository.save(manufacturerOne);
-	 }
-   return new ResponseEntity<Manufacturer>(manufacturer,HttpStatus.ACCEPTED);
- }
  
 	
 
